@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Event Application - Nevmind Civilization</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    /* Reset & base */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fdfdfd;
+      color: #1a1a1a;
+      align-items: center;
+    }
+    header.hero {
+      background: linear-gradient(to right, #ffec70, #ffe044);
+      color: #1a1a1a;
+      padding: 100px 30px 60px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 4px 8px white(0, 0, 0, 0.1);
+    }
+    header.hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+    }
+    header.hero p {
+      font-size: 1.4rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    nav {
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      box-shadow: 0 6px 56px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #1a1a1a;
+      border-top: 1px solid #1a1a1a;
+    }
+    nav a {
+      margin: 0 20px;
+      text-decoration: none;
+      font-weight: 600;
+      color: #333;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #ffbb00;
+    }
+
+    /* Application Form */
+    form {
+  background: #fff9c4; /* pale yellow */
+  padding: 50px 60px;
+  border-radius: 15px;
+  max-width: 850px;
+  width: 95%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border: 2px solid #fdd835;
+  box-sizing: border-box;
+  margin: 40px auto 60px auto; /* top 40px, bottom 60px, auto left/right */
+}
+
+    fieldset {
+      border: none;
+      margin-bottom: 40px;
+      padding: 0;
+    }
+
+    legend {
+      font-weight: 800;
+      font-size: 1.7rem;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+      border-bottom: 3px solid #fdd835;
+      padding-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: black;
+      font-size: 1.1rem;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 2px solid #fdd835;
+      border-radius: 10px;
+      background-color: #fffde7;
+      font-size: 1rem;
+      color: #4a4200;
+      transition: border-color 0.3s ease;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #bca200;
+      outline: none;
+      background-color: #fff9c4;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .required-star {
+      color: #d49900;
+      margin-left: 4px;
+    }
+
+    /* Radio and checkbox group styling */
+    .option-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      margin-top: 12px;
+    }
+
+    .option-group label {
+      font-weight: 600;
+      cursor: pointer;
+      padding: 8px 22px;
+      background: #fffde7;
+      border: 2px solid #fdd835;
+      border-radius: 24px;
+      transition: background-color 0.3s, border-color 0.3s;
+      user-select: none;
+      flex: 1 1 140px;
+      text-align: center;
+      color: #6e6300;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+
+    .option-group input[type="radio"],
+    .option-group input[type="checkbox"] {
+      display: none;
+    }
+
+    .option-group input[type="radio"]:checked + label,
+    .option-group input[type="checkbox"]:checked + label {
+      background-color: #fdd835;
+      border-color: #bca200;
+      color: #4a4200;
+      font-weight: 700;
+      box-shadow: 0 0 8px #bca200aa;
+    }
+
+    /* Submit button */
+    button.submit-btn {
+      background-color: #fdd835;
+      color: #4a4200;
+      font-weight: 700;
+      font-size: 1.4rem;
+      border: none;
+      border-radius: 40px;
+      padding: 18px 72px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(221, 187, 0, 0.5);
+      transition: background-color 0.3s ease;
+      display: block;
+      margin: 30px auto 0 auto;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    button.submit-btn:hover,
+    button.submit-btn:focus {
+      background-color: #e8c83c;
+      box-shadow: 0 10px 28px rgba(221, 187, 0, 0.8);
+      outline: none;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #ffe044;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #1a1a1a;
+    }
+
+    footer a:hover,
+    footer a:focus {
+      color: #836f00;
+      outline: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 720px) {
+      header.hero {
+        height: auto;
+        padding: 30px 20px;
+      }
+      header.hero h1 {
+        font-size: 36px;
+      }
+      header.hero p {
+        font-size: 16px;
+        max-width: 100%;
+      }
+      nav {
+        font-size: 16px;
+        padding: 16px 0;
+        margin-bottom: 30px;
+      }
+      form {
+        padding: 30px 25px;
+        max-width: 100%;
+      }
+      button.submit-btn {
+        padding: 14px 40px;
+        font-size: 1.2rem;
+      }
+      .option-group {
+        flex-direction: column;
+      }
+      .option-group label {
+        flex: none;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <h1>Event Application Form - Nevmind Civilization Events</h1>
+    <p>Fill out the form below for a chance to participate in our next Civilization event</p>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Events</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <form action="https://formsubmit.co/itay.dayan7job@gmail.com" method="POST">
+    <fieldset>
+      <legend>Basic Information</legend>
+      <label for="discordUsername">What is your Discord username?<span class="required-star">*</span></label>
+      <input type="text" id="discordUsername" name="discordUsername" required placeholder="e.g. Nevmind#1234" />
+
+      <label for="mcUsername">What is your Minecraft username? (Please make sure not to make any spelling mistakes and to pay attention to uppercase and lowercase letters.)<span class="required-star">*</span></label>
+      <input type="text" id="mcUsername" name="mcUsername" required placeholder="Your Minecraft IGN" />
+
+      <label for="age">How old are you?<span class="required-star">*</span></label>
+      <input type="number" id="age" name="age" required min="8" max="120" placeholder="Your age" />
+    </fieldset>
+
+    <fieldset>
+      <legend>Minecraft Details</legend>
+      <label>What type of Minecraft do you play?<span class="required-star">*</span></label>
+      <div class="option-group">
+        <input type="radio" id="java" name="mcType" value="Java" required />
+        <label for="java">Java</label>
+
+        <input type="radio" id="bedrock" name="mcType" value="Bedrock" />
+        <label for="bedrock">Bedrock</label>
+
+        <input type="radio" id="cracked" name="mcType" value="Cracked" />
+        <label for="cracked">Cracked</label>
+      </div>
+
+      <label for="discordLevel">What is your level on the Discord server?<span class="required-star">*</span></label>
+      <select id="discordLevel" name="discordLevel" required>
+        <option value="" disabled selected>Select your level</option>
+        <option value="Less than 5">Less than 5</option>
+        <option value="5-10">5-10</option>
+        <option value="10-15">10-15</option>
+        <option value="15-20">15-20</option>
+        <option value="20-25">20-25</option>
+        <option value="25+">25+</option>
+      </select>
+
+      <label for="timezone">What is your timezone in relation to GMT?<span class="required-star">*</span></label>
+<select id="timezone" name="timezone" required>
+  <option value="" disabled selected>Select your time zone</option>
+  <option value="GMT−12:00">GMT−12:00</option>
+  <option value="GMT−11:00">GMT−11:00</option>
+  <option value="GMT−10:00">GMT−10:00</option>
+  <option value="GMT−09:30">GMT−09:30</option>
+  <option value="GMT−09:00">GMT−09:00</option>
+  <option value="GMT−08:00">GMT−08:00</option>
+  <option value="GMT−07:00">GMT−07:00</option>
+  <option value="GMT−06:00">GMT−06:00</option>
+  <option value="GMT−05:00">GMT−05:00</option>
+  <option value="GMT−04:30">GMT−04:30</option>
+  <option value="GMT−04:00">GMT−04:00</option>
+  <option value="GMT−03:30">GMT−03:30</option>
+  <option value="GMT−03:00">GMT−03:00</option>
+  <option value="GMT−02:00">GMT−02:00</option>
+  <option value="GMT−01:00">GMT−01:00</option>
+  <option value="GMT±00:00">GMT±00:00</option>
+  <option value="GMT+01:00">GMT+01:00</option>
+  <option value="GMT+02:00">GMT+02:00</option>
+  <option value="GMT+03:00">GMT+03:00</option>
+  <option value="GMT+03:30">GMT+03:30</option>
+  <option value="GMT+04:00">GMT+04:00</option>
+  <option value="GMT+04:30">GMT+04:30</option>
+  <option value="GMT+05:00">GMT+05:00</option>
+  <option value="GMT+05:30">GMT+05:30</option>
+  <option value="GMT+05:45">GMT+05:45</option>
+  <option value="GMT+06:00">GMT+06:00</option>
+  <option value="GMT+06:30">GMT+06:30</option>
+  <option value="GMT+07:00">GMT+07:00</option>
+  <option value="GMT+08:00">GMT+08:00</option>
+  <option value="GMT+08:45">GMT+08:45</option>
+  <option value="GMT+09:00">GMT+09:00</option>
+  <option value="GMT+09:30">GMT+09:30</option>
+  <option value="GMT+10:00">GMT+10:00</option>
+  <option value="GMT+10:30">GMT+10:30</option>
+  <option value="GMT+11:00">GMT+11:00</option>
+  <option value="GMT+12:00">GMT+12:00</option>
+  <option value="GMT+12:45">GMT+12:45</option>
+  <option value="GMT+13:00">GMT+13:00</option>
+  <option value="GMT+14:00">GMT+14:00</option>
+</select>
+
+
+      <label for="joinDate">When did you join the Discord server?<span class="required-star">*</span></label>
+      <input type="text" id="joinDate" name="joinDate" placeholder="Day, Month, Year (e.g. 5 January 2023)" required />
+    </fieldset>
+
+    <fieldset>
+      <legend>Event Participation</legend>
+      <label for="activeTime">Approximately how much time do you expect to be active during the event?<span class="required-star">*</span></label>
+      <input type="text" id="activeTime" name="activeTime" required placeholder="e.g. 2 hours daily" />
+
+      <label for="contributionPlan">How do you plan to contribute to the event?<span class="required-star">*</span></label>
+      <textarea id="contributionPlan" name="contributionPlan" required placeholder="Your ideas and plans..."></textarea>
+
+      <label for="uniqueQualities">What are your plans, and what unique qualities will you bring that justify your acceptance?<span class="required-star">*</span></label>
+      <textarea id="uniqueQualities" name="uniqueQualities" required placeholder="Tell us why you should be chosen..."></textarea>
+
+      <label for="pastParticipation">Have you participated in a Civilization event before? (If yes, which one?)<span class="required-star">*</span></label>
+      <input type="text" id="pastParticipation" name="pastParticipation" required placeholder="Event name or 'No'" />
+    </fieldset>
+
+    <fieldset>
+      <legend>Communication & Preferences</legend>
+      <label>Do you intend to use Simple Voice Chat to communicate with players in the server? (It’s very easy to install.)<span class="required-star">*</span></label>
+      <div class="option-group">
+        <input type="radio" id="voiceYes" name="voiceChat" value="Yes" required />
+        <label for="voiceYes">Yes</label>
+
+        <input type="radio" id="voiceNo" name="voiceChat" value="No" />
+        <label for="voiceNo">No</label>
+      </div>
+
+      <label>Which biome would you prefer to be in?<span class="required-star">*</span></label>
+      <div class="option-group">
+        <input type="radio" id="Dark Oak" name="preferredBiome" value="Dark Oak" required />
+        <label for="Dark Oak">Dark Oak</label>
+
+        <input type="radio" id="Badlands" name="preferredBiome" value="Badlands" />
+        <label for="Badlands">Badlands</label>
+      </div>
+    </fieldset>
+
+    <button type="submit" class="submit-btn">Submit Application</button>
+  </form>
+
+  <footer>
+    &copy; 2025 Nevmind's Civilization Server. All rights reserved.
+  </footer>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nevmind Civilization - Stuff Application</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    /* Reset & base */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fdfdfd;
+      color: #1a1a1a;
+      align-items: center;
+    }
+    header.hero {
+      background: linear-gradient(to right, #ffec70, #ffe044);
+      color: #1a1a1a;
+      padding: 100px 30px 60px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 4px 8px white(0, 0, 0, 0.1);
+    }
+    header.hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+    }
+    header.hero p {
+      font-size: 1.4rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    nav {
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      box-shadow: 0 6px 56px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #1a1a1a;
+      border-top: 1px solid #1a1a1a;
+    }
+    nav a {
+      margin: 0 20px;
+      text-decoration: none;
+      font-weight: 600;
+      color: #333;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #ffbb00;
+    }
+
+    /* Application Form */
+    form {
+  background: #fff9c4; /* pale yellow */
+  padding: 50px 60px;
+  border-radius: 15px;
+  max-width: 850px;
+  width: 95%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border: 2px solid #fdd835;
+  box-sizing: border-box;
+  margin: 40px auto 60px auto; /* top 40px, bottom 60px, auto left/right */
+}
+
+    fieldset {
+      border: none;
+      margin-bottom: 40px;
+      padding: 0;
+    }
+
+    legend {
+      font-weight: 800;
+      font-size: 1.7rem;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+      border-bottom: 3px solid #fdd835;
+      padding-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: black;
+      font-size: 1.1rem;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 2px solid #fdd835;
+      border-radius: 10px;
+      background-color: #fffde7;
+      font-size: 1rem;
+      color: #4a4200;
+      transition: border-color 0.3s ease;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #bca200;
+      outline: none;
+      background-color: #fff9c4;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .required-star {
+      color: #d49900;
+      margin-left: 4px;
+    }
+
+    /* Radio and checkbox group styling */
+    .option-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      margin-top: 12px;
+    }
+
+    .option-group label {
+      font-weight: 600;
+      cursor: pointer;
+      padding: 8px 22px;
+      background: #fffde7;
+      border: 2px solid #fdd835;
+      border-radius: 24px;
+      transition: background-color 0.3s, border-color 0.3s;
+      user-select: none;
+      flex: 1 1 140px;
+      text-align: center;
+      color: #6e6300;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+
+    .option-group input[type="radio"],
+    .option-group input[type="checkbox"] {
+      display: none;
+    }
+
+    .option-group input[type="radio"]:checked + label,
+    .option-group input[type="checkbox"]:checked + label {
+      background-color: #fdd835;
+      border-color: #bca200;
+      color: #4a4200;
+      font-weight: 700;
+      box-shadow: 0 0 8px #bca200aa;
+    }
+
+    /* Submit button */
+    button.submit-btn {
+      background-color: #fdd835;
+      color: #4a4200;
+      font-weight: 700;
+      font-size: 1.4rem;
+      border: none;
+      border-radius: 40px;
+      padding: 18px 72px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(221, 187, 0, 0.5);
+      transition: background-color 0.3s ease;
+      display: block;
+      margin: 30px auto 0 auto;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    button.submit-btn:hover,
+    button.submit-btn:focus {
+      background-color: #e8c83c;
+      box-shadow: 0 10px 28px rgba(221, 187, 0, 0.8);
+      outline: none;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #ffe044;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #1a1a1a;
+    }
+
+    footer a:hover,
+    footer a:focus {
+      color: #836f00;
+      outline: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 720px) {
+      header.hero {
+        height: auto;
+        padding: 30px 20px;
+      }
+      header.hero h1 {
+        font-size: 36px;
+      }
+      header.hero p {
+        font-size: 16px;
+        max-width: 100%;
+      }
+      nav {
+        font-size: 16px;
+        padding: 16px 0;
+        margin-bottom: 30px;
+      }
+      form {
+        padding: 30px 25px;
+        max-width: 100%;
+      }
+      button.submit-btn {
+        padding: 14px 40px;
+        font-size: 1.2rem;
+      }
+      .option-group {
+        flex-direction: column;
+      }
+      .option-group label {
+        flex: none;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <h1>Stuff Application Form - Nevmind Civilization Events</h1>
+    <p>Fill out the form below for a chance to join the stuff team of the Nevmind Civilization Events Discord server</p>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Events</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <form action="https://formsubmit.co/itay.dayan7job@gmail.com" method="POST">
+    <fieldset>
+      <legend>Basic Information</legend>
+      <label>How old are you?</label>
+      <input type="number" required>
+
+      <label>What’s your timezone?</label>
+      <input type="text" required>
+
+      <label>What’s your Discord username?</label>
+      <input type="text" required>
+
+      <label>What is your Minecraft username? (Please make sure not to make any spelling mistakes and to pay attention to uppercase and lowercase letters.)</label>
+      <input type="text">
+
+      <label>When did you join the Discord server?</label>
+      <input type="text" required>
+
+      <label>What's your XP level in the Discord server?</label>
+      <select required>
+        <option value="" disabled selected>Select</option>
+        <option>Less than 5</option>
+        <option>5–10</option>
+        <option>10–15</option>
+        <option>15–20</option>
+        <option>20–25</option>
+        <option>25+</option>
+      </select>
+    </fieldset>
+
+    <fieldset>
+      <legend>Staff Skills & Understanding</legend>
+      <label>What is the role of a staff member on this server?</label>
+      <textarea required></textarea>
+
+      <label>How do you plan to enforce the server rules?</label>
+      <textarea required></textarea>
+
+      <label>Do you have any prior experience as a staff member?</label>
+      <textarea required></textarea>
+
+      <label>Why do you want to become a staff member?</label>
+      <textarea required></textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend>Personality & Moderation Style</legend>
+      <label>How would you describe your personality in a team environment?</label>
+      <textarea required></textarea>
+
+      <label>How do you usually deal with people who are being rude or disruptive?</label>
+      <textarea required></textarea>
+
+      <label>What would you do if a player breaks a rule, but they're new and clearly didn’t know?</label>
+      <textarea required></textarea>
+
+      <label>If a friend of yours breaks a rule, how would you handle it?</label>
+      <textarea required></textarea>
+
+      <label>How do you respond to criticism from other staff or players?</label>
+      <textarea required></textarea>
+
+      <label>Do you feel more comfortable working independently or with a team? Why?</label>
+      <textarea required></textarea>
+
+      <label>Are you comfortable using moderation tools (mute, kick, ban, warn, ticket systems, etc.)?</label>
+      <textarea required></textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend>Scenario Questions</legend>
+      <label>A player is spamming and being toxic in general chat, but keeps changing their behavior whenever a mod is watching. What do you do?</label>
+      <textarea required></textarea>
+
+      <label>Two players are arguing heavily. You check the logs and see they’re both slightly in the wrong. How would you de-escalate the situation?</label>
+      <textarea required></textarea>
+
+      <label>An event is ongoing and a participant accuses another team of cheating. What are your first steps?</label>
+      <textarea required></textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend>Availability & Commitment</legend>
+      <label>How many hours a week can you dedicate to moderating or helping the server?</label>
+      <input type="text" required>
+
+      <label>Are you usually available during european evenings? (when most events happen)</label>
+      <input type="text" required>
+
+      <label>Do you agree to follow internal staff guidelines and participate in staff discussions when needed?</label>
+      <select required>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+    </fieldset>
+
+    <fieldset>
+      <legend>Additional Staff Roles</legend>
+      <label>Are you willing to be a mod in future Civilization events?</label>
+      <select required>
+        <option value="" disabled selected>Select</option>
+        <option>Yes</option>
+        <option>No, I don’t intend to participate in these events in any way</option>
+        <option>No, I want to play in them</option>
+      </select>
+
+      <label>Are you interested in becoming a recruiter?</label>
+      <select required>
+        <option value="" disabled selected>Select</option>
+        <option>Yes, that's why I'm filling in this form</option>
+        <option>No, I want to be a regular staff member</option>
+        <option>I didn’t fill in the form with the intention of becoming a recruiter, but I don’t mind being one if needed</option>
+      </select>
+
+      <label>Are you interested in becoming a map maker?</label>
+      <select required>
+        <option value="" disabled selected>Select</option>
+        <option>Yes, that's why I'm filling in this form</option>
+        <option>No, I want to be a regular staff member</option>
+        <option>I didn’t fill in the form with the intention of becoming a map maker, but I don’t mind being one if needed (and I have the ability to create maps)</option>
+      </select>
+    </fieldset>
+
+    <button type="submit" class="submit-btn">Submit Application</button>
+  </form>
+
+  <footer>
+    &copy; 2025 Nevmind's Civilization Server. All rights reserved.
+  </footer>
+</body>
+</html
