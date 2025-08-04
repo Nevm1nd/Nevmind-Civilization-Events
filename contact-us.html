@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us - Nevmind Civilization</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <style>
+    /* Reuse all the same styles from your original page */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fdfdfd;
+      color: #1a1a1a;
+      align-items: center;
+    }
+
+    header.hero {
+      background: linear-gradient(to right, #ffec70, #ffe044);
+      color: #1a1a1a;
+      padding: 100px 30px 60px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    header.hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+    }
+
+    header.hero p {
+      font-size: 1.4rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    nav {
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      box-shadow: 0 6px 56px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #1a1a1a;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    nav a {
+      margin: 0 20px;
+      text-decoration: none;
+      font-weight: 600;
+      color: #333;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffbb00;
+    }
+
+    form {
+      background: #fff9c4;
+      padding: 50px 60px;
+      border-radius: 15px;
+      max-width: 800px;
+      width: 95%;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      border: 2px solid #fdd835;
+      box-sizing: border-box;
+      margin: 40px auto 60px auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: black;
+      font-size: 1.1rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 2px solid #fdd835;
+      border-radius: 10px;
+      background-color: #fffde7;
+      font-size: 1rem;
+      color: #4a4200;
+      margin-bottom: 25px;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #bca200;
+      outline: none;
+      background-color: #fff9c4;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .required-star {
+      color: #d49900;
+      margin-left: 4px;
+    }
+
+    button.submit-btn {
+      background-color: #fdd835;
+      color: #4a4200;
+      font-weight: 700;
+      font-size: 1.4rem;
+      border: none;
+      border-radius: 40px;
+      padding: 18px 72px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(221, 187, 0, 0.5);
+      transition: background-color 0.3s ease;
+      display: block;
+      margin: 30px auto 0 auto;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    button.submit-btn:hover,
+    button.submit-btn:focus {
+      background-color: #e8c83c;
+      box-shadow: 0 10px 28px rgba(221, 187, 0, 0.8);
+      outline: none;
+    }
+
+    footer {
+      background-color: #ffe044;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #1a1a1a;
+    }
+
+    footer a:hover,
+    footer a:focus {
+      color: #836f00;
+      outline: none;
+    }
+
+    @media (max-width: 720px) {
+      header.hero {
+        padding: 30px 20px;
+      }
+      header.hero h1 {
+        font-size: 36px;
+      }
+      header.hero p {
+        font-size: 16px;
+      }
+      form {
+        padding: 30px 25px;
+      }
+      button.submit-btn {
+        padding: 14px 40px;
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <h1>Contact Us - Nevmind Civilization Events</h1>
+    <p>If you have any questions, feedback, or issues, feel free to reach out using the form below.</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="event-application-form.html">Event Application</a>
+    <a href="staff-application-form.html">Staff Application</a>
+    <a href="contact-us.html">Contact</a>
+    <a href="about.html">About</a>
+  </nav>
+
+  <form action="https://formsubmit.co/aimadenewsofficial@gmail.com" method="POST">
+    <label for="name">Your Name<span class="required-star">*</span></label>
+    <input type="text" id="name" name="name" required placeholder="Full Name" />
+
+    <label for="email">Your Email<span class="required-star">*</span></label>
+    <input type="email" id="email" name="email" required placeholder="example@email.com" />
+
+    <label for="subject">Subject<span class="required-star">*</span></label>
+    <input type="text" id="subject" name="subject" required placeholder="Reason for contacting" />
+
+    <label for="message">Message<span class="required-star">*</span></label>
+    <textarea id="message" name="message" required placeholder="Write your message here..."></textarea>
+
+    <!-- Optional: Redirect to thank-you page -->
+    <input type="hidden" name="_next" value="https://nevm1nd.github.io/thankyou.html" />
+    <input type="hidden" name="_captcha" value="false" />
+
+    <button type="submit" class="submit-btn">Send Message</button>
+  </form>
+
+  <footer>
+    &copy; 2025 Nevmind's Civilization Server. All rights reserved.
+  </footer>
+</body>
+</html>
