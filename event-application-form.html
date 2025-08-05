@@ -187,24 +187,6 @@
       outline: none;
     }
 
-    .form-wrapper {
-  display: flex;
-  gap: 40px;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  margin: 40px auto;
-  max-width: 1600px;
-  padding: 0 20px;
-}
-
-form.form-regular,
-form.form-video {
-  flex: 1 1 500px;
-  box-sizing: border-box;
-}
-
-
     /* Footer */
     footer {
       background-color: #ffe044;
@@ -262,16 +244,16 @@ form.form-video {
     <p>Fill out the form below for a chance to participate in our next Civilization event</p>
   </header>
 
- <nav>
+  <nav>
     <a href="index.html">Home</a>
     <a href="event-application-form.html">Event Application</a>
-    <a href="staff.html">Staff Application</a>
+    <a href="staff-application-form.html">Staff Application</a>
     <a href="contact-us.html">Contact</a>
     <a href="about.html">About</a>
   </nav>
 
-  <div class="form-wrapper">
-  <fieldset>
+  <form action="https://formsubmit.co/itay.dayan7job@gmail.com" method="POST">
+    <fieldset>
       <legend>Basic Information</legend>
       <label for="discordUsername">What is your Discord username?<span class="required-star">*</span></label>
       <input type="text" id="discordUsername" name="discordUsername" required placeholder="e.g. Nevmind#1234" />
@@ -381,12 +363,9 @@ form.form-video {
 
         <input type="radio" id="voiceNo" name="voiceChat" value="No" />
         <label for="voiceNo">No</label>
-
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_next" value="https://nevm1nd.github.io/thankyou.html" />
       </div>
 
-      <label>Which biome would you prefer to be in? (We cannot 100% guarantee that you will be there)<span class="required-star">*</span></label>
+      <label>Which biome would you prefer to be in?<span class="required-star">*</span></label>
       <div class="option-group">
         <input type="radio" id="Dark Oak" name="preferredBiome" value="Dark Oak" required />
         <label for="Dark Oak">Dark Oak</label>
@@ -397,72 +376,10 @@ form.form-video {
     </fieldset>
 
     <button type="submit" class="submit-btn">Submit Application</button>
-  <form class="form-regular" action="https://formsubmit.co/aimadenewsofficial@gmail.com" method="POST">
-    <!-- הטופס הרגיל שלך פה בדיוק כמו שהוא (בלי לשנות) -->
   </form>
-
-  <!-- Form B: Video Form -->
-  <form class="form-video" action="https://formsubmit.co/aimadenewsofficial@gmail.com" method="POST">
-    <form class="form-video" action="https://formsubmit.co/aimadenewsofficial@gmail.com" method="POST">
-  <fieldset style="background: #fff8b0; padding: 40px; border-radius: 20px; border: 3px dashed #fdd835; box-shadow: 0 0 15px #ffec7077;">
-    <legend style="font-size: 2rem; color: #4a4200; font-weight: 800; margin-bottom: 20px;">🎥 Video Application (Optional)</legend>
-
-    <p style="font-size: 1.1rem; color: #4a4200; margin-bottom: 25px;">
-      Want to significantly improve your chances of getting accepted? Send us a short YouTube video where you introduce yourself and explain why you want to join! This is highly recommended.
-    </p>
-
-    <label for="videoLink">YouTube Video Link<span class="required-star">*</span></label>
-    <input type="text" id="videoLink" name="videoLink" placeholder="https://youtube.com/..." required />
-
-    <label for="videoDiscord">Discord Username<span class="required-star">*</span></label>
-    <input type="text" id="videoDiscord" name="videoDiscord" placeholder="e.g. Nevmind#1234" required />
-
-    <label for="videoMinecraft">Minecraft Username<span class="required-star">*</span></label>
-    <input type="text" id="videoMinecraft" name="videoMinecraft" placeholder="Your Minecraft IGN" required />
-
-    <label for="videoAge">Your Age<span class="required-star">*</span></label>
-    <input type="number" id="videoAge" name="videoAge" min="8" max="120" required placeholder="Your age" />
-
-    <label>Which version of Minecraft do you play?<span class="required-star">*</span></label>
-    <div class="option-group">
-      <input type="radio" id="videoJava" name="videoMCType" value="Java" required />
-      <label for="videoJava">Java</label>
-
-      <input type="radio" id="videoBedrock" name="videoMCType" value="Bedrock" />
-      <label for="videoBedrock">Bedrock</label>
-
-      <input type="radio" id="videoCracked" name="videoMCType" value="Cracked" />
-      <label for="videoCracked">Cracked</label>
-    </div>
-
-    <label>Are you willing to use Simple Voice Chat?<span class="required-star">*</span></label>
-    <div class="option-group">
-      <input type="radio" id="videoVoiceYes" name="videoVoiceChat" value="Yes" required />
-      <label for="videoVoiceYes">Yes</label>
-
-      <input type="radio" id="videoVoiceNo" name="videoVoiceChat" value="No" />
-      <label for="videoVoiceNo">No</label>
-    </div>
-
-    <input type="hidden" name="_captcha" value="false" />
-    <input type="hidden" name="_next" value="https://nevm1nd.github.io/thankyou.html" />
-
-    <button type="submit" class="submit-btn">Submit Video Application</button>
-  </fieldset>
-</form>
-
-  </form>
-</div>
 
   <footer>
     &copy; 2025 Nevmind's Civilization Server. All rights reserved.
   </footer>
 </body>
 </html>
-
-
-
-
-
-
-
