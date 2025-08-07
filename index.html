@@ -6,12 +6,19 @@
   <title>Nevmind Civilization Events - Official Website</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <style>
-    body {
+    bhtml, body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #fdfdfd;
       color: #1a1a1a;
+      align-items: center;
+        max-width: 100%;
+  overflow-x: hidden;
     }
+ 
+* {
+  box-sizing: border-box;
+}
     header.hero {
       background: linear-gradient(to right, #ffec70, #ffe044);
       color: #1a1a1a;
@@ -30,27 +37,29 @@
       margin: 0 auto;
     }
     nav {
-      background-color: #ffffff;
-      display: flex;
-      justify-content: center;
-      padding: 15px 0;
-      box-shadow: 0 6px 56px rgba(0, 0, 0, 0.05);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      border-bottom: 1px solid #1a1a1a;
-      border-top: 1px solid #1a1a1a;
-    }
+  background-color: #ffffff;
+  display: flex;
+  flex-wrap: wrap; /* allows links to wrap onto new line */
+  justify-content: center;
+  gap: 10px 20px; /* vertical + horizontal spacing between links */
+  padding: 15px 10px;
+  box-shadow: 0 6px 56px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid #1a1a1a;
+  border-top: 1px solid #1a1a1a;
+  box-sizing: border-box;
+}
+
     nav a {
-      margin: 0 20px;
-      text-decoration: none;
-      font-weight: 600;
-      color: #333;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #ffbb00;
-    }
+  text-decoration: none;
+  font-weight: 600;
+  color: #333;
+  padding: 8px 12px;
+  transition: color 0.3s;
+  white-space: nowrap; /* keep each link on a single line */
+}
     .section {
       padding: 60px 20px;
       max-width: 1100px;
@@ -214,6 +223,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
