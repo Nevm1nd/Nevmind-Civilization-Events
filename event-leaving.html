@@ -62,41 +62,21 @@
   white-space: nowrap; /* keep each link on a single line */
 }
 
-nav a:hover {
-  color: #ffbb00;
-}
-
-    /* Application Form */
     form {
-  background: #fff9c4; /* pale yellow */
-  padding: 50px 60px;
-  border-radius: 15px;
-  max-width: 850px;
-  width: 95%;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  border: 2px solid #fdd835;
-  box-sizing: border-box;
-  margin: 40px auto 60px auto; /* top 40px, bottom 60px, auto left/right */
-}
-
-    fieldset {
-      border: none;
-      margin-bottom: 40px;
-      padding: 0;
-    }
-
-    legend {
-      font-weight: 800;
-      font-size: 1.7rem;
-      color: #1a1a1a;
-      margin-bottom: 20px;
-      border-bottom: 3px solid #fdd835;
-      padding-bottom: 10px;
+      background: #fff9c4;
+      padding: 50px 60px;
+      border-radius: 15px;
+      max-width: 800px;
+      width: 95%;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      border: 2px solid #fdd835;
+      box-sizing: border-box;
+      margin: 40px auto 60px auto;
     }
 
     label {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       font-weight: 600;
       color: black;
       font-size: 1.1rem;
@@ -113,14 +93,12 @@ nav a:hover {
       background-color: #fffde7;
       font-size: 1rem;
       color: #4a4200;
-      transition: border-color 0.3s ease;
+      margin-bottom: 25px;
       box-sizing: border-box;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    input[type="text"]:focus,
-    input[type="number"]:focus,
-    select:focus,
+    input:focus,
     textarea:focus {
       border-color: #bca200;
       outline: none;
@@ -129,7 +107,7 @@ nav a:hover {
 
     textarea {
       resize: vertical;
-      min-height: 120px;
+      min-height: 140px;
     }
 
     .required-star {
@@ -137,45 +115,6 @@ nav a:hover {
       margin-left: 4px;
     }
 
-    /* Radio and checkbox group styling */
-    .option-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 22px;
-      margin-top: 12px;
-    }
-
-    .option-group label {
-      font-weight: 600;
-      cursor: pointer;
-      padding: 8px 22px;
-      background: #fffde7;
-      border: 2px solid #fdd835;
-      border-radius: 24px;
-      transition: background-color 0.3s, border-color 0.3s;
-      user-select: none;
-      flex: 1 1 140px;
-      text-align: center;
-      color: #6e6300;
-      box-sizing: border-box;
-      font-size: 1rem;
-    }
-
-    .option-group input[type="radio"],
-    .option-group input[type="checkbox"] {
-      display: none;
-    }
-
-    .option-group input[type="radio"]:checked + label,
-    .option-group input[type="checkbox"]:checked + label {
-      background-color: #fdd835;
-      border-color: #bca200;
-      color: #4a4200;
-      font-weight: 700;
-      box-shadow: 0 0 8px #bca200aa;
-    }
-
-    /* Submit button */
     button.submit-btn {
       background-color: #fdd835;
       color: #4a4200;
@@ -199,7 +138,6 @@ nav a:hover {
       outline: none;
     }
 
-    /* Footer */
     footer {
       background-color: #ffe044;
       text-align: center;
@@ -214,10 +152,8 @@ nav a:hover {
       outline: none;
     }
 
-    /* Responsive */
     @media (max-width: 720px) {
       header.hero {
-        height: auto;
         padding: 30px 20px;
       }
       header.hero h1 {
@@ -225,23 +161,13 @@ nav a:hover {
       }
       header.hero p {
         font-size: 16px;
-        max-width: 100%;
       }
-      
       form {
         padding: 30px 25px;
-        max-width: 100%;
       }
       button.submit-btn {
         padding: 14px 40px;
         font-size: 1.2rem;
-      }
-      .option-group {
-        flex-direction: column;
-      }
-      .option-group label {
-        flex: none;
-        width: 100%;
       }
     }
   </style>
@@ -264,11 +190,11 @@ nav a:hover {
     <label for="name">Your Discord Username<span class="required-star">*</span></label>
     <input type="text" id="name" name="name" required placeholder="Full Name" />
 
-    <label for="email">What is your Minecraft username? (Please make sure not to make any spelling mistakes and to pay attention to uppercase and lowercase letters.)<span class="required-star">*</span></label>
-    <input type="email" id="email" name="email" required placeholder="example@email.com" />
+    <label for="mcUsername">What is your Minecraft username? (Please make sure not to make any spelling mistakes and to pay attention to uppercase and lowercase letters.)<span class="required-star">*</span></label>
+    <input type="text" id="" name="mcUsername" required placeholder="Full and correct Minecraft Username"/>
 
-    <label for="discordLevel">Why do you want to leave the event?<span class="required-star">*</span></label>
-      <select id="discordLevel" name="discordLevel" required>
+    <label for="reasonselect">Why do you want to leave the event?<span class="required-star">*</span></label>
+      <select id="reasonselect" name="reasonselect" required>
         <option value="" disabled selected>Select the option that fits Your reason best</option>
         <option value="Less than 5">After looking at the schedule again, I realized the times don’t work for me and conflict with my personal plans</option>
         <option value="5-10">One of my friends left / said he would sign up but didn’t, and I wanted to play the event with him</option>
@@ -279,8 +205,8 @@ nav a:hover {
         <option value="25+">Other</option>
       </select>
 
-          <label for="email">In case your reason for leaving is related to the management of the event, could you explain to us what happened and give advice on how to improve?</label>
-    <input type="email" id="email" name="email" />
+          <label for="reason">In case your reason for leaving is related to the management of the event, could you explain to us what happened and give advice on how to improve?</label>
+    <input type="text" id="reason" name="reason" />
 
     <button type="submit" class="submit-btn">Send Message</button>
   </form>
@@ -290,7 +216,6 @@ nav a:hover {
   </footer>
 </body>
 </html>
-
 
 
 
