@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Event Withdrawal Form - Nevmind Civilization</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <style>
+    /* Reuse all the same styles from your original page */
+    html, body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fdfdfd;
+      color: #1a1a1a;
+      align-items: center;
+        max-width: 100%;
+  overflow-x: hidden;
+    }
+ 
+* {
+  box-sizing: border-box;
+}
+    header.hero {
+      background: linear-gradient(to right, #ffec70, #ffe044);
+      color: #1a1a1a;
+      padding: 100px 30px 60px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 4px 8px white(0, 0, 0, 0.1);
+    }
+    header.hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+    }
+    header.hero p {
+      font-size: 1.4rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    nav {
+  background-color: #ffffff;
+  display: flex;
+  flex-wrap: wrap; /* allows links to wrap onto new line */
+  justify-content: center;
+  gap: 10px 20px; /* vertical + horizontal spacing between links */
+  padding: 15px 10px;
+  box-shadow: 0 6px 56px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid #1a1a1a;
+  border-top: 1px solid #1a1a1a;
+  box-sizing: border-box;
+}
+
+    nav a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #333;
+  padding: 8px 12px;
+  transition: color 0.3s;
+  white-space: nowrap; /* keep each link on a single line */
+}
+
+    form {
+      background: #fff9c4;
+      padding: 50px 60px;
+      border-radius: 15px;
+      max-width: 800px;
+      width: 95%;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      border: 2px solid #fdd835;
+      box-sizing: border-box;
+      margin: 40px auto 60px auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: black;
+      font-size: 1.1rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 2px solid #fdd835;
+      border-radius: 10px;
+      background-color: #fffde7;
+      font-size: 1rem;
+      color: #4a4200;
+      margin-bottom: 25px;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #bca200;
+      outline: none;
+      background-color: #fff9c4;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .required-star {
+      color: #d49900;
+      margin-left: 4px;
+    }
+
+    button.submit-btn {
+      background-color: #fdd835;
+      color: #4a4200;
+      font-weight: 700;
+      font-size: 1.4rem;
+      border: none;
+      border-radius: 40px;
+      padding: 18px 72px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(221, 187, 0, 0.5);
+      transition: background-color 0.3s ease;
+      display: block;
+      margin: 30px auto 0 auto;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    button.submit-btn:hover,
+    button.submit-btn:focus {
+      background-color: #e8c83c;
+      box-shadow: 0 10px 28px rgba(221, 187, 0, 0.8);
+      outline: none;
+    }
+
+    footer {
+      background-color: #ffe044;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #1a1a1a;
+    }
+
+    footer a:hover,
+    footer a:focus {
+      color: #836f00;
+      outline: none;
+    }
+
+    @media (max-width: 720px) {
+      header.hero {
+        padding: 30px 20px;
+      }
+      header.hero h1 {
+        font-size: 36px;
+      }
+      header.hero p {
+        font-size: 16px;
+      }
+      form {
+        padding: 30px 25px;
+      }
+      button.submit-btn {
+        padding: 14px 40px;
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <h1>CEvent Withdrawal Form - Nevmind Civilization Events</h1>
+    <p>If you signed up to join our event and got accepted but for some reason decided that you want to leave it, please fill out the following form.</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="event-application-form.html">Event Application</a>
+    <a href="staff.html">Staff Application</a>
+    <a href="contact-us.html">Contact</a>
+    <a href="about.html">About</a>
+  </nav>
+
+  <form action="https://formsubmit.co/aimadenewsofficial@gmail.com" method="POST">
+    <label for="name">Your Discord Username<span class="required-star">*</span></label>
+    <input type="text" id="name" name="name" required placeholder="Full Name" />
+
+    <label for="email">What is your Minecraft username? (Please make sure not to make any spelling mistakes and to pay attention to uppercase and lowercase letters.)<span class="required-star">*</span></label>
+    <input type="email" id="email" name="email" required placeholder="example@email.com" />
+
+    <label for="discordLevel">Why do you want to leave the event?<span class="required-star">*</span></label>
+      <select id="discordLevel" name="discordLevel" required>
+        <option value="" disabled selected>Select the option that fits Your reason best</option>
+        <option value="Less than 5">After looking at the schedule again, I realized the times don’t work for me and conflict with my personal plans</option>
+        <option value="5-10">One of my friends left / said he would sign up but didn’t, and I wanted to play the event with him</option>
+        <option value="10-15">After reviewing the event details again, I realized I don’t really connect with its concept and it’s not for me</option>
+        <option value="15-20">I lost interest in Minecraft/the event</option>
+        <option value="20-25">I don’t feel comfortable with the rules or format of the event</option>
+        <option value="25+">Personal reasons (health, family, or other private matters)</option>
+        <option value="25+">Other</option>
+      </select>
+
+          <label for="email">In case your reason for leaving is related to the management of the event, could you explain to us what happened and give advice on how to improve?</label>
+    <input type="email" id="email" name="email" placeholder="example@email.com" />
+
+    <button type="submit" class="submit-btn">Send Message</button>
+  </form>
+
+  <footer>
+    &copy; 2025 Nevmind's Civilization Server. All rights reserved.
+  </footer>
+</body>
+</html>
+
+
+
