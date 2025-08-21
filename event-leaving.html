@@ -62,28 +62,49 @@
   white-space: nowrap; /* keep each link on a single line */
 }
 
+nav a:hover {
+  color: #ffbb00;
+}
+
+    /* Application Form */
     form {
-      background: #fff9c4;
-      padding: 50px 60px;
-      border-radius: 15px;
-      max-width: 800px;
-      width: 95%;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-      border: 2px solid #fdd835;
-      box-sizing: border-box;
-      margin: 40px auto 60px auto;
+  background: #fff9c4; /* pale yellow */
+  padding: 50px 60px;
+  border-radius: 15px;
+  max-width: 850px;
+  width: 95%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border: 2px solid #fdd835;
+  box-sizing: border-box;
+  margin: 40px auto 60px auto; /* top 40px, bottom 60px, auto left/right */
+}
+
+    fieldset {
+      border: none;
+      margin-bottom: 40px;
+      padding: 0;
+    }
+
+    legend {
+      font-weight: 800;
+      font-size: 1.7rem;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+      border-bottom: 3px solid #fdd835;
+      padding-bottom: 10px;
     }
 
     label {
       display: block;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       font-weight: 600;
       color: black;
       font-size: 1.1rem;
     }
 
     input[type="text"],
-    input[type="email"],
+    input[type="number"],
+    select,
     textarea {
       width: 100%;
       padding: 14px 18px;
@@ -92,12 +113,14 @@
       background-color: #fffde7;
       font-size: 1rem;
       color: #4a4200;
-      margin-bottom: 25px;
+      transition: border-color 0.3s ease;
       box-sizing: border-box;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    input:focus,
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    select:focus,
     textarea:focus {
       border-color: #bca200;
       outline: none;
@@ -106,7 +129,7 @@
 
     textarea {
       resize: vertical;
-      min-height: 140px;
+      min-height: 120px;
     }
 
     .required-star {
@@ -114,38 +137,8 @@
       margin-left: 4px;
     }
 
-    button.submit-btn {
-      background-color: #fdd835;
-      color: #4a4200;
-      font-weight: 700;
-      font-size: 1.4rem;
-      border: none;
-      border-radius: 40px;
-      padding: 18px 72px;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(221, 187, 0, 0.5);
-      transition: background-color 0.3s ease;
-      display: block;
-      margin: 30px auto 0 auto;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    button.submit-btn:hover,
-    button.submit-btn:focus {
-      background-color: #e8c83c;
-      box-shadow: 0 10px 28px rgba(221, 187, 0, 0.8);
-      outline: none;
-    }
-
-    footer {
-      background-color: #ffe044;
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #1a1a1a;
-    }
-
-        .option-group {
+    /* Radio and checkbox group styling */
+    .option-group {
       display: flex;
       flex-wrap: wrap;
       gap: 22px;
@@ -182,14 +175,49 @@
       box-shadow: 0 0 8px #bca200aa;
     }
 
+    /* Submit button */
+    button.submit-btn {
+      background-color: #fdd835;
+      color: #4a4200;
+      font-weight: 700;
+      font-size: 1.4rem;
+      border: none;
+      border-radius: 40px;
+      padding: 18px 72px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(221, 187, 0, 0.5);
+      transition: background-color 0.3s ease;
+      display: block;
+      margin: 30px auto 0 auto;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    button.submit-btn:hover,
+    button.submit-btn:focus {
+      background-color: #e8c83c;
+      box-shadow: 0 10px 28px rgba(221, 187, 0, 0.8);
+      outline: none;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #ffe044;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #1a1a1a;
+    }
+
     footer a:hover,
     footer a:focus {
       color: #836f00;
       outline: none;
     }
 
+    /* Responsive */
     @media (max-width: 720px) {
       header.hero {
+        height: auto;
         padding: 30px 20px;
       }
       header.hero h1 {
@@ -197,13 +225,23 @@
       }
       header.hero p {
         font-size: 16px;
+        max-width: 100%;
       }
+      
       form {
         padding: 30px 25px;
+        max-width: 100%;
       }
       button.submit-btn {
         padding: 14px 40px;
         font-size: 1.2rem;
+      }
+      .option-group {
+        flex-direction: column;
+      }
+      .option-group label {
+        flex: none;
+        width: 100%;
       }
     }
   </style>
@@ -252,6 +290,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
