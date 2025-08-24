@@ -1,24 +1,27 @@
-const express = require("express");
-const session = require("express-session");
-const passport = require("passport");
-const DiscordStrategy = require("passport-discord").Strategy;
-require("dotenv").config();
+import express from "express";
+import session from "express-session";
+import passport from "passport";
+import { Strategy as DiscordStrategy } from "passport-discord";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 
-// Session middleware (needed for Passport to work)
+// session middleware
 app.use(
   session({
-    secret: "supersecret", // change to a stronger secret in production
+    secret: "super-secret-key",
     resave: false,
     saveUninitialized: false,
   })
 );
 
+// initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Passport serialization
+// passport config
 passport.serializeUser((user, done) => {
   done(null, user);
 });
@@ -26,13 +29,13 @@ passport.deserializeUser((obj, done) => {
   done(null, obj);
 });
 
-// Configure Discord strategy
+// discord strategy
 passport.use(
   new DiscordStrategy(
     {
       clientID: process.env.DISCORD_CLIENT_ID,
       clientSecret: process.env.DISCORD_CLIENT_SECRET,
-      callbackURL: process.env.DISCORD_CALLBACK_URL, // e.g. https://yourapp.onrender.com/auth/discord/callback
+      callbackURL: process.env.DISCORD_CALLBACK_URL, // e.g. https://discord-login-backend-ndqi.onrender.com/auth/discord/callback
       scope: ["identify", "email"],
     },
     (accessToken, refreshToken, profile, done) => {
@@ -41,40 +44,35 @@ passport.use(
   )
 );
 
-// Routes
-app.get("/", (req, res) => {
-  res.send("Hello! Go to <a href='/auth/discord'>Login with Discord</a>");
-});
+// route: start login
+app.get("/auth/discord/login", passport.authenticate("discord"));
 
-app.get(
-  "/auth/discord",
-  passport.authenticate("discord")
-);
-
+// route: callback
 app.get(
   "/auth/discord/callback",
   passport.authenticate("discord", {
-    failureRedirect: "/auth/discord/failure",
+    failureRedirect: "/login-failed",
   }),
   (req, res) => {
-    // Successful login
+    // successful login
     res.send(`Logged in as ${req.user.username}#${req.user.discriminator}`);
   }
 );
 
-app.get("/auth/discord/failure", (req, res) => {
-  res.send("Failed to authenticate with Discord.");
-});
-
-app.get("/logout", (req, res, next) => {
-  req.logout(err => {
-    if (err) return next(err);
+// route: logout
+app.get("/auth/logout", (req, res) => {
+  req.logout(() => {
     res.redirect("/");
   });
 });
 
-// Start server
+// home route
+app.get("/", (req, res) => {
+  res.send("Hello! Go to <a href='/auth/discord/login'>Login with Discord</a>");
+});
+
+// start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
