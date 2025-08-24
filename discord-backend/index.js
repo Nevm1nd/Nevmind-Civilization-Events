@@ -1,65 +1,80 @@
-require('dotenv').config();
-const express = require('express');
-const axios = require('axios');
+const express = require("express");
+const session = require("express-session");
+const passport = require("passport");
+const DiscordStrategy = require("passport-discord").Strategy;
+require("dotenv").config();
+
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+// Session middleware (needed for Passport to work)
+app.use(
+  session({
+    secret: "supersecret", // change to a stronger secret in production
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
-// Discord OAuth2 credentials from your Discord application
-const CLIENT_ID = process.env.CLIENT_ID;
-const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const REDIRECT_URI = process.env.REDIRECT_URI;
+app.use(passport.initialize());
+app.use(passport.session());
 
-// Route for Discord login redirect
-app.get('/auth/discord/callback', async (req, res) => {
-  const code = req.query.code;
-
-  if (!code) return res.send('No code provided');
-
-  try {
-    // Exchange code for access token
-    const tokenResponse = await axios.post('https://discord.com/api/oauth2/token', new URLSearchParams({
-      client_id: CLIENT_ID,
-      client_secret: CLIENT_SECRET,
-      grant_type: 'authorization_code',
-      code: code,
-      redirect_uri: REDIRECT_URI,
-    }), {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    });
-
-    const accessToken = tokenResponse.data.access_token;
-
-    // Fetch user info
-    const userResponse = await axios.get('https://discord.com/api/users/@me', {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    });
-
-    // Optional: check if user is in your server
-    const guildId = process.env.GUILD_ID;
-    const memberResponse = await axios.get(`https://discord.com/api/users/@me/guilds`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    });
-
-    const isMember = memberResponse.data.some(g => g.id === guildId);
-
-    res.json({
-      user: userResponse.data,
-      inServer: isMember
-    });
-
-  } catch (err) {
-    console.error(err);
-    res.send('Error fetching Discord data');
-  }
+// Passport serialization
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+passport.deserializeUser((obj, done) => {
+  done(null, obj);
 });
 
+// Configure Discord strategy
+passport.use(
+  new DiscordStrategy(
+    {
+      clientID: process.env.DISCORD_CLIENT_ID,
+      clientSecret: process.env.DISCORD_CLIENT_SECRET,
+      callbackURL: process.env.DISCORD_CALLBACK_URL, // e.g. https://yourapp.onrender.com/auth/discord/callback
+      scope: ["identify", "email"],
+    },
+    (accessToken, refreshToken, profile, done) => {
+      return done(null, profile);
+    }
+  )
+);
+
+// Routes
+app.get("/", (req, res) => {
+  res.send("Hello! Go to <a href='/auth/discord'>Login with Discord</a>");
+});
+
+app.get(
+  "/auth/discord",
+  passport.authenticate("discord")
+);
+
+app.get(
+  "/auth/discord/callback",
+  passport.authenticate("discord", {
+    failureRedirect: "/auth/discord/failure",
+  }),
+  (req, res) => {
+    // Successful login
+    res.send(`Logged in as ${req.user.username}#${req.user.discriminator}`);
+  }
+);
+
+app.get("/auth/discord/failure", (req, res) => {
+  res.send("Failed to authenticate with Discord.");
+});
+
+app.get("/logout", (req, res, next) => {
+  req.logout(err => {
+    if (err) return next(err);
+    res.redirect("/");
+  });
+});
+
+// Start server
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
