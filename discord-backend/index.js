@@ -46,6 +46,7 @@ passport.use(
 
 // route: start login
 app.get("/auth/discord/login", passport.authenticate("discord"));
+res.send(`1111111`);
 
 // route: callback
 app.get(
